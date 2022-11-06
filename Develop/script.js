@@ -91,36 +91,9 @@ var numeric = false;
 var length = getLength();
 var special = false;
 
-// Special Charset only
-var charset4 =  "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-// Numeric Charset only
-var charset6 = "0123456789";
-// Numeric + special charset
-var charset9 = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~0123456789";
-// Uppercase only
-var charset2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-// Uppercase + Special charset
-var charset10 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-// Uppercase + Numeric
-var charset15 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-// Uppercase + Numeric + Special
-var charset8 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~0123456789";
-// Lowercase only
-var charset1 = "abcdefghijklmnopqrstuvwxyz";
-// Lowercase + Special
-var charset5 = "abcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-// Lowercase + Numeric
-var charset11 = "abcdefghijklmnopqrstuvwxyz0123456789";
-// Lowercase + Numeric + Special
-var charset12 = "abcdefghijklmnopqrstuvwxyz0123456789!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-// Lowercase + uppercase
-var charset3 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-// Lowercase + uppercase + special
-var charset7 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
-// Lowercase + uppercase + numeric
-var charset13 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-// Lowercase + uppercase +numeric + special
-var charset14 = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+const charsets = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~", "abcdefghijklmnopqrstuvwxyz!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~", "0123456789", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~", "ABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~0123456789", 
+"!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~0123456789", "ABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~", "abcdefghijklmnopqrstuvwxyz0123456789", "abcdefghijklmnopqrstuvwxyz0123456789!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~", "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789" ];
+
 
 var passwordfinal = [];
 
@@ -131,124 +104,125 @@ var passwordfinal = [];
     numeric = getnumeric();
     special = getSpecialcharacters();
   }
-// All options selected
+
+  // All permutations of possible passcode options. 
 if(lowercase === true && uppercase == true && numeric == true && special == true) {
-  var n = charset14.length;
+  var n = charsets[13].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset14[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[13][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 else if(lowercase === false && uppercase == true && numeric == true && special == true) {
-  var n = charset8.length;
+  var n = charsets[7].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset8[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[7][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 
 else if(lowercase === false && uppercase == false && numeric == true && special == true) {
-  var n = charset9.length;
+  var n = charsets[8].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset9[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[8][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 
 
 else if(lowercase === false && uppercase == false && numeric == false && special == true) {
-  var n = charset4.length;
+  var n = charsets[3].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset4[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[3][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 
 else if(lowercase === false && uppercase == true && numeric == false && special == false) {
-  var n = charset2.length;
+  var n = charsets[1].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset2[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[1][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 
 
 else if(lowercase === false && uppercase == false && numeric == true && special == false) {
-  var n = charset6.length;
+  var n = charsets[5].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset6[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[5][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 // Uppercase + Special 
 else if(lowercase === false && uppercase == true && numeric == false && special == true) {
-  var n = charset10.length;
+  var n = charsets[9].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset10[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[9][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 // Upppercase + numeric
 else if(lowercase === false && uppercase == true && numeric == true && special == false) {
-  var n = charset15.length;
+  var n = charsets[14].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset15[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[14][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 // Lowercase only
 else if(lowercase === true && uppercase == false && numeric == false && special == false) {
-  var n = charset1.length;
+  var n = charsets[0].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset1[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[0][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 // lowercase + special
 else if(lowercase === true && uppercase == false && numeric == false && special == true) {
-  var n = charset5.length;
+  var n = charsets[4].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset5[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[4][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 // lowercase + numeric
 else if(lowercase === true && uppercase == false && numeric == true && special == false) {
-  var n = charset11.length;
+  var n = charsets[10].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset11[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[10][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 // lowercase + numeric + special 
 else if(lowercase === true && uppercase == false && numeric == true && special == true) {
-  var n = charset12.length;
+  var n = charsets[11].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset12[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[11][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 // lowercase + uppercase
 else if(lowercase === true && uppercase == true && numeric == false && special == false) {
-  var n = charset3.length;
+  var n = charsets[2].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset3[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[2][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 // lowercase + uppercase + special
 else if(lowercase === true && uppercase == true && numeric == false && special == true) {
-  var n = charset7.length;
+  var n = charsets[6].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset7[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[6][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
 // lowercase +uppercase + numeric
 else if(lowercase === true && uppercase == true && numeric == true && special == false) {
-  var n = charset13.length;
+  var n = charsets[12].length;
   for (var i = 0; i < length; i++) {
-    passwordfinal.push(charset13[Math.floor(Math.random()*n)])
+    passwordfinal.push(charsets[12][Math.floor(Math.random()*n)])
     }  
       return passwordfinal.join('');  
 }
